@@ -1,0 +1,36 @@
+{
+  "name": "usp/moodle",
+  "repositories":{
+    "clamp": {
+      "type":"composer",
+      "url":"https://moodlegist.clamp-it.org",
+      "canonical": false
+    }
+  },
+  "require": {
+    "moodle/moodle": "3.11.10",
+    "moodle-plugin-db/mod_vpl": "2022093012"
+  },
+  "extra": {
+    "installerdir": "moodle",
+    "installer-paths": {
+      "moodle/mod/{$name}": ["type:moodle-mod"],
+      "moodle/auth/{$name}": ["type:moodle-auth"],
+      "moodle/block/{$name}": ["type:moodle-block"]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "MoodleComposer\\": "src"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": "MoodleComposer\\MoodleComposer::postInstall",
+    "post-update-cmd": "MoodleComposer\\MoodleComposer::postInstall"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  }
+}
